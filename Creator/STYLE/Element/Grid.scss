@@ -1,0 +1,73 @@
+﻿@import "..\\Shared\\Function";
+
+@mixin gridFormat($method: Justify, $value: Start) {
+    $value: to-upper-case($value);
+    $method: to-upper-case($method);
+    $val: start;
+
+    @if ($value == "START") {
+        $val: start;
+    }
+    @else if ($value == "END") {
+        $val: end;
+    }
+    @else if ($value == "CENTER") {
+        $val: center;
+    }
+    @else if ($value == "STRETCH") {
+        $val: stretch;
+    }
+    @else if ($value == "BASELINE") {
+        $val: baseline;
+    }
+
+    @if ($method == "JUSTIFY") {
+        justify-items: to-lower-case($val);
+    }
+    @else if ($method == "ALIGN") {
+        align-items: to-lower-case($val);
+    }
+}
+
+@mixin gridLoop($count) {
+    @each $name in getMap(GridJustify) {
+        &-#{$count} {
+            display: grid;
+            grid-template-rows: auto;
+            grid-template-columns: repeat($count, 1fr);
+
+            &-#{to-lower-case($name)} {
+                display: grid;
+                grid-template-rows: auto;
+                grid-template-columns: repeat($count, 1fr);
+
+                @if not ($name == "Baseline") {
+                    @include gridFormat(Justify, $name);
+                }
+            }
+
+            @each $align in getMap(GridAlign) {
+                &-#{to-lower-case($name)}-#{to-lower-case($align)} {
+                    display: grid;
+                    grid-template-rows: auto;
+                    grid-template-columns: repeat($count, 1fr);
+
+                    @include gridFormat(Justify, $name);
+                    @include gridFormat(Align, $align);
+                }
+            }
+        }
+    }
+}
+
+.grid {
+    @for $count from 1 through KW(CommonTopCount) {
+        @include gridLoop($count);
+    }
+
+    @each $name, $val in getMap(GridGap) {
+        &-gap-#{to-lower-case($name)} {
+            grid-gap: $val;
+        }
+    }
+}
