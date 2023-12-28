@@ -28,6 +28,8 @@ See more
 
 New site with documentation out now!
 
+**[https://www.patreon.com/LundbeckTech](https://www.patreon.com/LundbeckTech)**
+
 **[https://getcreatorframework.com](https://getcreatorframework.com)**
 
 ---
