@@ -1,0 +1,20 @@
+﻿@import "..\\Shared\\Function";
+@import "..\\Shared\\Media";
+@import "LayoutMixin";
+
+@each $nr, $font in getMap(HeadTags) {
+    h#{$nr} {
+        font-size: $font;
+
+        &.#{"slim"} {
+            font-size: $font;
+            margin: 0;
+        }
+    }
+}
+
+@each $size, $val in getMap(FontSize) {
+    .#{KW(Font) + $size} {
+        font-size: $val;
+    }
+}

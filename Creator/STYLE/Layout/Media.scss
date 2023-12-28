@@ -1,0 +1,75 @@
+﻿@import "..\\Shared\\Media";
+@import "..\\Shared\\Function";
+
+[class^="show-"] {
+    display: none !important;
+    visibility: hidden;
+}
+
+.hide {
+    display: none;
+    visibility: hidden;
+
+    &-force {
+        display: none !important;
+        visibility: hidden !important;
+    }
+}
+
+.show {
+    display: block;
+    visibility: visible;
+
+    &-force {
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    &-inline {
+        display: inline-block;
+        visibility: visible;
+
+        &-force {
+            display: inline-block !important;
+            visibility: visible !important;
+        }
+    }
+}
+
+@each $name, $val in $mediaBreakpoints {
+  @if not (equal($name, XS)) {
+    @include media($name) {
+        $name: str($name);
+
+        .hide-#{$name} {
+            display: none;
+            visibility: hidden;
+
+            &-force {
+                display: none !important;
+                visibility: hidden !important;
+            }
+        }
+
+        .show-#{$name} {
+            display: block;
+            visibility: visible;
+
+            &-force {
+                display: block !important;
+                visibility: visible !important;
+            }
+
+            &-inline {
+                display: inline-block;
+                visibility: visible !important;
+
+                &-force {
+                    display: inline-block !important;
+                    visibility: visible !important;
+                }
+            }
+        }
+    }
+  }
+}

@@ -1,0 +1,183 @@
+﻿@import "..\\Shared\\Config";
+@import "..\\Shared\\Function";
+@import "LayoutMixin";
+
+$pre: str(getPrefix(Flex));
+
+.#{$pre} {
+    display: flex;
+
+    &-force {
+        display: flex !important;
+    }
+
+    &-wrap {
+        display: flex;
+        flex-wrap: wrap;
+
+        &-force {
+            display: flex !important;
+            flex-wrap: wrap !important;
+        }
+    }
+
+    &-no-wrap {
+        display: flex;
+        flex-wrap: nowrap;
+
+        &-force {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+        }
+    }
+
+    &-reverse {
+        display: flex;
+        flex-wrap: wrap-reverse;
+
+        &-force {
+            display: flex !important;
+            flex-wrap: wrap-reverse !important;
+        }
+    }
+
+    &-even {
+        @include flexEven();
+        @include flexEven(row, true, true);
+
+        &-column {
+            @include flexEven(column);
+            @include flexEven(column, true, true);
+        }
+    }
+
+    @each $show, $full in getMap(FlexJustify) {
+        $just: $show;
+        $tag: $show;
+
+        @if (equal($just, start, end)) {
+            $just: $full;
+        }
+
+        @else if (equal($just, between)) {
+            $just: space-between;
+        }
+
+        &-#{str($tag)} {
+            display: flex;
+            justify-content: str($just);
+
+            &-force {
+                display: flex !important;
+                justify-content: str($just) !important;
+            }
+
+            @each $alignName, $alignVal in getMap(FlexAlign) {
+                &-#{str($alignName)} {
+                    display: flex;
+                    justify-content: str($just);
+                    align-items: str($alignVal);
+
+                    &-force {
+                        display: flex !important;
+                        justify-content: str($just) !important;
+                        align-items: str($alignVal) !important;
+                    }
+                }
+            }
+        }
+
+        @each $alignName, $alignVal in getMap(FlexJustify) {
+            &-self-#{str($alignName)} {
+                align-self: str($alignVal);
+
+                &-force {
+                    align-self: str($alignVal) !important;
+                }
+            }
+        }
+    }
+}
+
+.horizontal-list {
+    display: flex;
+    flex-direction: column;
+
+    &-reverse {
+        display: flex;
+        flex-direction: column-reverse;
+
+        &-force {
+            display: flex !important;
+            flex-direction: column-reverse !important;
+        }
+    }
+
+    &-force {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    &-even {
+        @include flexEven();
+
+        &-reverse {
+            @include flexEven(column, true, false, true);
+            @include flexEven(column, true, true, true);
+        }
+
+        @include flexEven(column, true, true);
+    }
+}
+
+.vertical-list {
+    display: flex;
+    flex-direction: row;
+
+    &-reverse {
+        display: flex;
+        flex-direction: row-reverse;
+
+        &-force {
+            display: flex !important;
+            flex-direction: row-reverse !important;
+        }
+    }
+
+    &-force {
+        display: flex !important;
+        flex-direction: row !important;
+    }
+
+    &-even {
+        @include flexEven(row);
+
+        &-reverse {
+            @include flexEven(row, true, false, true);
+            @include flexEven(row, true, true, true);
+        }
+
+        @include flexEven(row, true, true);
+    }
+}
+
+@each $item, $property in getMap(FlexItem) {
+    .#{$pre}-item {
+        @each $sizeName, $size in getMap(FlexItemSize) {
+            $styleName: str($item) + "-" + str($sizeName);
+            $prop: $property + " " + str($size);
+
+            @if (equal($item, Fixed)) {
+                $styleName: str($sizeName);
+            }
+
+            &-#{$styleName} {
+                flex: #{$prop};
+
+                &-force {
+                    flex: #{$prop} !important;
+                }
+            }
+        }
+    }
+}

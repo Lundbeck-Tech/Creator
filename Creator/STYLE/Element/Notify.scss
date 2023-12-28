@@ -1,0 +1,84 @@
+@import "..\\Shared\\Config";
+@import "..\\Shared\\ColorFunction";
+@import "..\\Shared\\Function";
+@import "..\\Shared\\Mixin";
+
+$padding: 10px;
+$borderRadius: 14px;
+$shadowColor: black;
+
+@each $style in sys(NotifyStyles) {
+    @each $position in getMap(NotifyPosition, $style) {
+        @each $duration in getMap(NotifyDuration) {
+            .notify-#{str($style)}-#{str($position)}-#{str($duration)} {
+                position: fixed;
+                transition: all 0.8s;
+                visibility: hidden;
+                opacity: 0;
+                text-align: center;
+                padding: $padding;
+
+                @if (equal($style, Bar)) {
+                    left: 0;
+                    right: 0;
+                    min-height: 28px;
+
+                    @if (equal($position, Top)) {
+                        top: 0;
+                        bottom: unset;
+                        box-shadow: 0 4px 22px -2px $shadowColor;
+                        border-bottom-left-radius: $borderRadius;
+                        border-bottom-right-radius: $borderRadius;
+                    }
+                    @else if (equal($position, Bottom)) {
+                        bottom: 0;
+                        top: unset;
+                        box-shadow: 0 -4px 22px $shadowColor;
+                        border-top-left-radius: $borderRadius;
+                        border-top-right-radius: $borderRadius;
+                    }
+                }
+                @else if (equal($style, Box)) {
+                    min-width: 36px;
+                    min-height: 36px;
+                    border-radius: $borderRadius;
+                    box-shadow: 0 0 12px 8px $shadowColor;
+
+                    @if (equal($position, Top, Bottom)) {
+                        @include absoluteCenter();
+
+                        @if (equal($position, Top)) {
+                            top: 38px;
+                            bottom: unset;
+                        }
+                        @else if (equal($position, Bottom)) {
+                            top: unset;
+                            bottom: 0;
+                        }
+                    }
+                    @else if (equal($position, Left, Right)) {
+                        @include absoluteCenter(Vertical);
+
+                        @if (equal($position, Right)) {
+                            left: unset;
+                            right: 16px;
+                        }
+                    }
+                }
+
+                &.show {
+                    transition: opacity 0.8s;
+                    visibility: visible;
+                    opacity: 1;
+                }
+
+                @each $name, $content in getMap(CP) {
+                    &.cp-#{str($name)} {
+                        background-color: color($name);
+                        color: color($name, Fifth);
+                    }
+                }
+            }
+        }
+    }
+}

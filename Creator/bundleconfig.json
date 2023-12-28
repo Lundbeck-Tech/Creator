@@ -1,0 +1,36 @@
+[
+  {
+    "outputFileName": "_Build/Creator.css",
+    "inputFiles": [
+      "_Build/STYLE/Element.BarsMenu.css",
+      "_Build/STYLE/Element.Dialog.css",
+      "_Build/STYLE/Element.Footer.css",
+      "_Build/STYLE/Element.FormControl.css",
+      "_Build/STYLE/Element.Notify.css",
+      "_Build/STYLE/Element.Table.css",
+      "_Build/STYLE/Element.Tabs.css",
+      "_Build/STYLE/Layout.ColorProfile.css",
+      "_Build/STYLE/Layout.Document.css",
+      "_Build/STYLE/Layout.Effects.css",
+      "_Build/STYLE/Layout.Flex.css",
+      "_Build/STYLE/Layout.Font.css",
+      "_Build/STYLE/Layout.FontMedia.css",
+      "_Build/STYLE/Layout.Grid.css",
+      "_Build/STYLE/Layout.Media.css",
+      "_Build/STYLE/Layout.MediaDevice.css",
+      "_Build/STYLE/Layout.Other.css",
+      "_Build/STYLE/Layout.PaddingAndMargin.css",
+      "_Build/STYLE/Layout.Positioning.css",
+      "_Build/STYLE/Layout.Row.css",
+      "_Build/STYLE/Layout.Typography.css",
+      "_Build/STYLE/TagHelper.BarsMenu.css",
+      "_Build/STYLE/TagHelper.Checkbox.css",
+      "_Build/STYLE/TagHelper.Icon.css",
+      "_Build/STYLE/TagHelper.Icon.GoogleFontsIcons.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "outputMode": "multipleLines"
+    }
+  }
+]

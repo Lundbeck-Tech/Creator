@@ -1,0 +1,72 @@
+﻿@import "..//Shared//Function";
+@import "..//Shared//ColorProfiles";
+
+.creator.checkbox-wrap {
+    display: inline-block;
+
+    @each $name, $map in getMap(CP) {
+        &.cp-#{str($name)} {
+            $back: color($name);
+            $check: color($name, Fifth);
+
+            & > .container > .checkmark {
+                display: inline-block;
+                position: relative;
+                top: 2px;
+                width: 22px;
+                height: 22px;
+                border-radius: 4px;
+                background-color: $back;
+            }
+
+            & > .container > .checkmark:after {
+                border: solid $check;
+                border-width: 0 4px 4px 0;
+            }
+        }
+    }
+
+    & > .container {
+        display: inline;
+        cursor: pointer;
+        font-size: 1rem;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        & > input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        & > .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        & > input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        & > .checkmark:after {
+            position: relative;
+            left: 7px;
+            top: 4px;
+            width: 4px;
+            height: 8px;
+            transform: rotate(45deg);
+        }
+    }
+
+    & > .text {
+        position: relative;
+        top: -2px;
+        font-size: 0.9rem;
+    }
+}

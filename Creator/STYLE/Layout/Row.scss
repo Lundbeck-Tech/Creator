@@ -1,0 +1,30 @@
+﻿@import "..\\Shared\\Function";
+@import "..\\Shared\\Media";
+
+$rowPre: str(getPrefix(MediaRow));
+$colPre: str(getPrefix(MediaColumn));
+$base: 12;
+
+.#{$rowPre} {
+  display: grid;
+  grid-template-columns: repeat($base, 1fr);
+  grid-template-rows: repeat(2, auto);
+
+  & > div[class^="col-"] {
+    grid-row: auto;
+    grid-column: 1/-1;
+  }
+}
+
+@each $size in sys(Sizes) {
+  @include media($size) {
+    @for $c from 1 through $base {
+      .#{$colPre}-#{str($size)}-#{$c} {
+        $span: $c;
+
+        grid-row: 1 !important;
+        grid-column: auto / span $span !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,456 @@
+﻿@import "..\\Shared\\Function";
+@import "..\\Shared\\ColorFunction";
+@import "..\\Shared\\Media";
+@import "..\\Shared\\Config";
+@import "..\\Shared\\Mixin";
+@import "LayoutMixin";
+
+.align {
+    &-left {
+        text-align: left;
+
+        &-force {
+            text-align: left !important;
+        }
+    }
+
+    &-right {
+        text-align: right;
+
+        &-force {
+            text-align: right !important;
+        }
+    }
+
+    &-center {
+        text-align: center;
+
+        &-force {
+            text-align: center !important;
+        }
+    }
+
+    &-vertical-center {
+        position: absolute;
+        @include absoluteCenter(Vertical);
+
+        &-force {
+            position: absolute !important;
+            @include absoluteCenter(Vertical, 50%, true);
+        }
+
+        &-fixed {
+            position: fixed;
+            @include absoluteCenter(Vertical);
+
+            &-force {
+                position: fixed !important;
+                @include absoluteCenter(Vertical, 50%, true);
+            }
+        }
+    }
+}
+
+.#{KW(Responsive)} {
+    @include responsive(true, false);
+
+    &-full-height {
+        @include responsive(true, false);
+        height: 100%;
+
+        &-center {
+            @include responsive(true);
+            height: 100%;
+        }
+    }
+
+    &-center {
+        @include responsive(true);
+    }
+}
+
+.#{KW(BG-Cover)} {
+    @include bgCover();
+
+    &-fixed {
+        @include bgCover(true);
+    }
+}
+
+.float-left {
+    float: left;
+
+    &-force {
+        float: left !important;
+    }
+}
+
+.float-right {
+    float: right;
+
+    &-force {
+        float: right !important;
+    }
+}
+
+.hide,
+.close,
+.invisible {
+    display: none;
+    visibility: hidden;
+
+    &-force {
+        display: none !important;
+        visibility: hidden !important;
+    }
+}
+
+.show,
+.block,
+.visible {
+    display: block;
+    visibility: visible;
+
+    &-force {
+        display: block !important;
+        visibility: visible !important;
+    }
+}
+
+@for $i from 1 through 9 {
+    .#{KW(Opacity)}-#{$i} {
+        @if ($i == 1) {
+            opacity: 1;
+
+            &-force {
+                opacity: 1 !important;
+            }
+        }
+        @else {
+            opacity: #{"0." + $i};
+
+            &-force {
+                opacity: #{"0." + $i} !important;
+            }
+        }
+    }
+}
+
+.clean {
+    padding: unset;
+    margin: unset;
+
+    &-force {
+        padding: unset !important;
+        margin: unset !important;
+    }
+}
+
+.clean-mrg {
+    margin: unset;
+
+    &-force {
+        margin: unset !important;
+    }
+}
+
+.clean-pad {
+    padding: unset;
+
+    &-force {
+        padding: unset !important;
+    }
+}
+
+.color {
+    &-bg-white {
+        background-color: white;
+
+        &-force {
+            background-color: white !important;
+        }
+    }
+
+    &-white {
+        color: white;
+
+        &-force {
+            color: white !important;
+        }
+    }
+
+    &-bg-black {
+        background-color: black;
+
+        &-force {
+            background-color: black !important;
+        }
+    }
+
+    &-black {
+        color: black;
+
+        &-force {
+            color: black !important;
+        }
+    }
+
+    @each $n, $v in getMap(CP) {
+        &-#{str($n)} {
+            color: color($n);
+
+            &-force {
+                color: color($n) !important;
+            }
+        }
+
+        &-bg-#{str($n)} {
+            background-color: color($n);
+
+            &-force {
+                background-color: color($n) !important;
+            }
+
+            &-opacity-8 {
+                background-color: rgba(color($n), 0.8);
+
+                &-force {
+                    background-color: rgba(color($n), 0.8) !important;
+                }
+            }
+
+            &-opacity-6 {
+                background-color: rgba(color($n), 0.6);
+
+                &-force {
+                    background-color: rgba(color($n), 0.6) !important;
+                }
+            }
+
+            &-opacity-4 {
+                background-color: rgba(color($n), 0.4);
+
+                &-force {
+                    background-color: rgba(color($n), 0.4) !important;
+                }
+            }
+
+            &-opacity-2 {
+                background-color: rgba(color($n), 0.2);
+
+                &-force {
+                    background-color: rgba(color($n), 0.2) !important;
+                }
+            }
+        }
+    }
+}
+
+.dis {
+    &-table {
+        display: table;
+        visibility: visible;
+
+        &-force {
+            display: table !important;
+            visibility: visible !important;
+        }
+    }
+
+    &-inline-table {
+        display: inline-table;
+        visibility: visible;
+
+        &-force {
+            display: inline-table !important;
+            visibility: visible !important;
+        }
+    }
+
+    &-block {
+        display: block;
+        visibility: visible;
+
+        &-force {
+            display: block !important;
+            visibility: visible !important;
+        }
+    }
+
+    &-inline-block {
+        display: inline-block;
+        visibility: visible;
+
+        &-force {
+            display: inline-block !important;
+            visibility: visible !important;
+        }
+    }
+
+    &-normal {
+        display: normal;
+        visibility: visible;
+
+        &-force {
+            display: normal !important;
+            visibility: visible !important;
+        }
+    }
+
+    &-none {
+        display: none;
+        visibility: hidden;
+
+        &-force {
+            display: none !important;
+            visibility: hidden !important;
+        }
+    }
+}
+
+.#{KW(WhiteSpace)} {
+    &-nowrap {
+        white-space: nowrap;
+
+        &-force {
+            white-space: nowrap !important;
+        }
+    }
+
+    &-normal {
+        white-space: normal;
+
+        &-force {
+            white-space: normal !important;
+        }
+    }
+
+    &-pre {
+        white-space: pre;
+
+        &-force {
+            white-space: pre !important;
+        }
+    }
+}
+
+.table-auto {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+
+    &-force {
+        display: table !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+.fill {
+    min-width: 100%;
+    min-height: 100%;
+
+    &-force {
+        min-width: 100% !important;
+        min-height: 100% !important;
+    }
+}
+
+.scale {
+    &-up:hover {
+        transition: all 80ms;
+        transform: scale(1.1);
+    }
+
+    &-down:hover {
+        transition: all 80ms;
+        transform: scale(-0.84);
+    }
+}
+
+@each $name in getMap(FixedItem) {
+    .fixed-#{str($name)} {
+        position: fixed;
+
+        @if (str($name) == left) {
+            left: 0px;
+            right: unset;
+
+            &-force {
+                left: 0px !important;
+                right: unset !important;
+            }
+        }
+        @else if (str($name) == left-top) {
+            left: 0px;
+            right: unset;
+            top: 0px;
+
+            &-force {
+                left: 0px !important;
+                right: unset !important;
+                top: 0px !important;
+            }
+        }
+        @else if (str($name) == left-bottom) {
+            left: 0px;
+            right: unset;
+            bottom: 0px;
+
+            &-force {
+                left: 0px !important;
+                right: unset !important;
+                bottom: 0px !important;
+            }
+        }
+        @else if (str($name) == right) {
+            left: unset;
+            right: 0px;
+
+            &-force {
+                left: unset !important;
+                right: 0px !important;
+            }
+        }
+        @else if (str($name) == right-top) {
+            left: unset;
+            right: 0px;
+            top: 0px;
+
+            &-force {
+                left: unset !important;
+                right: 0px !important;
+                top: 0px !important;
+            }
+        }
+        @else if (str($name) == right-bottom) {
+            left: unset;
+            right: 0px;
+            bottom: 0px;
+
+            &-force {
+                left: unset !important;
+                right: 0px !important;
+                bottom: 0px !important;
+            }
+        }
+        @else if (str($name) == top) {
+            top: 0px;
+            bottom: unset;
+
+            &-force {
+                top: 0px !important;
+                bottom: unset !important;
+            }
+        }
+        @else if (str($name) == bottom) {
+            top: unset;
+            bottom: 0px;
+
+            &-force {
+                top: unset !important;
+                bottom: 0px !important;
+            }
+        }
+    }
+}

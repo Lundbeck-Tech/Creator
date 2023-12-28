@@ -1,0 +1,157 @@
+﻿@import "..\\Shared\\Mixin";
+@import "..\\Shared\\Config";
+@import "..\\Shared\\Function";
+@import "..\\Shared\\ColorFunction";
+@import "ElementMixin";
+
+@mixin dialogCloseCommand($color) {
+    flex: 0 0 22px;
+    font-family: Verdana, 'Open Sans';
+    font-size: 16px;
+    font-weight: bolder;
+    font-style: normal;
+    transition: sys(Transition);
+    position: relative;
+    right: -2px;
+    color: $color;
+
+    &:hover {
+        color: rgba($color, 0.6);
+        cursor: pointer;
+    }
+
+    &::after {
+        display: inline-block;
+        content: "X";
+    }
+
+    &:hover::after {
+        color: rgba($color, 0.6);
+        cursor: pointer;
+    }
+}
+
+@each $cp, $c in getMap(CP) {
+    @each $sizeName, $size in getMap(Dialog) {
+        .dialog-#{str($cp)}-#{str($sizeName)} {
+            width: 100%;
+            max-width: $size;
+            max-height: 84%;
+            border: 8px solid color($cp);
+            border-radius: 10px;
+            padding: 0px;
+            z-index: 420;
+            position: fixed;
+            top: 50%;
+
+            @include shadow(10px, black);
+            @include absoluteCenter();
+
+            & > content {
+                $closeCommandColor: white;
+
+                & > header {
+                    $foreColor: color($cp, Last);
+                    $semiColor: color($cp);
+                    $backColor: color($cp, Second);
+                    $closeCommandColor: color($cp);
+                    $padVert: 4px;
+                    $padHori: 8px;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    color: $semiColor;
+                    padding-left: $padHori;
+                    padding-right: $padHori;
+                    padding-top: $padVert;
+                    padding-bottom: $padVert;
+                    border-bottom: 3px solid $semiColor;
+                    background: linear-gradient(color($cp, Fourth), color($cp, Last));
+
+                    &.solid {
+                        background: none;
+                        background-color: color($cp);
+                        color: color($cp, Last);
+                        $closeCommandColor: color($cp, Last);
+
+                        & > .close-command {
+                            @include dialogCloseCommand(color($cp, Last));
+                        }
+                    }
+
+                    & > .title {
+                        flex: 1 1 auto;
+                        font-size: 16px;
+                        font-weight: bold;
+
+                        @include noOverflow();
+                    }
+
+                    & > .close-command {
+                        @include dialogCloseCommand(color($cp, First));
+                    }
+                }
+
+                & > .body {
+                    padding: sys(DefaultPad);
+                    color: black;
+                    background-color: white;
+                }
+
+                & > footer {
+                    $color: color($cp);
+
+                    @if (equal($cp, Light)) {
+                        $color: #242424;
+                    }
+
+                    padding: getMap(Pad, SM);
+                    display: flex;
+                    justify-content: end;
+                    border-top: 1px solid $color;
+
+                    & .ok-command {
+                        &.btn {
+                            $minWidth: 66px;
+
+                            @include formButtonBase($cp);
+                            @include formControlHover($cp);
+                            min-width: $minWidth;
+
+                            &-left {
+                                @include formButtonBase($cp, false, (margin));
+                                @include formControlHover($cp);
+                                min-width: $minWidth;
+                                margin-right: auto;
+                            }
+
+                            &-center {
+                                @include formButtonBase($cp, false, (margin));
+                                @include formControlHover($cp);
+                                min-width: $minWidth;
+                                margin: auto;
+                            }
+                        }
+
+                        &:hover {
+                            cursor: pointer;
+                            font-weight: 800;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#dialogBackground {
+    display: none;
+    background-color: rgba(black, 0.8);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+}

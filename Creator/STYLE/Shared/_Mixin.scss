@@ -1,0 +1,279 @@
+﻿@import "Config";
+@import "Function";
+@import "ColorFunction";
+@import "Media";
+
+@mixin fillParent($position: absolute, $padding: 0, $visible: true) {
+    position: $position;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: $padding;
+
+    @if not ($visible) {
+        display: none;
+    }
+}
+
+@mixin airy($size: MD, $inside: false) {
+    $val: getMap(Airy, $size);
+
+    @if ($inside) {
+        padding: $val;
+    }
+    @else {
+        margin: $val;
+    }
+}
+
+@mixin responsive($restrain: true, $center: true, $pad: false) {
+    $min: 0px;
+    $max: 100%;
+
+    @if ($restrain) {
+        $max: getMap(Width, DOC);
+    }
+
+    width: 100%;
+    min-width: $min;
+    max-width: $max;
+
+    @if ($center) {
+        @include autoMargin();
+    }
+
+    @if ($pad) {
+        padding: sys(DefaultPad);
+    }
+    @else {
+        padding: 0;
+    }
+}
+
+@mixin color($cpName: Default, $clrName: Primary, $font: false, $bg: false) {
+    $clr: getItem(getMap(CP), toCPName($cpName));
+    $color: getItem($clr, toColorName($clrName));
+
+    @if ($font) {
+        color: $color;
+    }
+
+    @if ($bg) {
+        background-color: $color;
+    }
+}
+
+@mixin absoluteCenter($direction: Horizontal, $percentage: 50%, $force: false) {
+    @if (equal($direction, Horizontal)) {
+        @if not ($force) {
+            left: $percentage;
+            transform: translate(-$percentage, -$percentage);
+        }
+        @else {
+            left: $percentage !important;
+            transform: translate(-$percentage, -$percentage) !important;
+        }
+    }
+    @else if (equal($direction, Vertical)) {
+        @if not ($force) {
+            top: $percentage;
+            transform: translateY(-$percentage);
+        }
+        @else {
+            top: $percentage !important;
+            transform: translateY(-$percentage) !important;
+        }
+    }
+}
+
+@mixin autoMargin() {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin bgCover($fixed: false, $img: null) {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    @if ($fixed) {
+        background-attachment: fixed;
+    }
+
+    @if ($img) {
+        background-image: url($img);
+    }
+}
+
+@mixin bgRepeat() {
+    background-repeat: repeat;
+}
+
+@mixin bgRepeatY() {
+    background-position-y: left;
+    background-position-x: unset;
+}
+
+@mixin bgRepeatX() {
+    background-position-x: top;
+    background-position-y: unset;
+}
+
+@mixin cleanBase($pad: true, $mrg: true, $border: false, $table: false, $td: false) {
+    @if ($pad) {
+        padding: 0 !important;
+    }
+
+    @if ($mrg) {
+        margin: 0 !important;
+    }
+
+    @if ($border) {
+        border: none !important;
+    }
+
+    @if ($table) {
+        border: none !important;
+        margin: inherit;
+    }
+
+    @if ($td) {
+        td {
+            border: none !important;
+            padding: initial;
+        }
+    }
+}
+
+@mixin noOverflow() {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin boxGlow($cpName: Default, $size: 10px, $border: false) {
+    $cpName: toCPName($cpName);
+    $color: color($cpName, Fourth);
+    $borderColor: color($cpName, Third);
+
+    &:focus:not(#{getMap(KW, ValidateError)}) {
+        box-shadow: 0 0 $size $color;
+        outline: none;
+        background-color: color(Light, Fourth);
+
+        @if ($border) {
+            border: 2px solid $borderColor;
+        }
+    }
+}
+
+@mixin textGlow($color: #002155, $x: 1px, $y: 1px, $blur: 10px) {
+    text-shadow: $x $y $blur $color, $x $y $blur $color;
+}
+
+@mixin textOutline($size: 4px, $color: #4073c4, $outlineColor: #8d0000) {
+    color: $color;
+    -webkit-text-stroke-width: $size;
+    -webkit-text-stroke-color: $outlineColor;
+}
+
+@mixin textShadow($size: 2px, $color: color(Default)) {
+    text-shadow: $size $size $color;
+}
+
+@mixin shadow($size: 3px, $color: lighten(color(Default), 28%)) {
+    box-shadow: $size $size $color;
+}
+
+@mixin paddingAndMargin($prefix: Padding) {
+    $prefix: str($prefix);
+
+    @each $baseName, $baseValue in getMap(Pad) {
+        $baseName: str($baseName);
+
+        &-#{str($baseName)} {
+            #{$prefix}: $baseValue;
+
+            &-force {
+                #{$prefix}: $baseValue !important;
+            }
+
+            @each $dir in sys(Directions) {
+                $dir: str($dir);
+
+                &-#{$dir} {
+                    #{$prefix}-#{$dir}: $baseValue;
+
+                    &-force {
+                        #{$prefix}-#{$dir}: $baseValue !important;
+                    }
+
+                    &-clear {
+                        #{$prefix}-#{$dir}: 0;
+
+                        &-force {
+                            #{$prefix}-#{$dir}: 0 !important;
+                        }
+                    }
+                }
+            }
+
+            &-clear {
+                #{$prefix}: 0;
+
+                &-force {
+                    #{$prefix}: 0 !important;
+                }
+            }
+        }
+
+        @each $deviceName, $deviceValue in getMap(Device) {
+            &-#{str($deviceName)}-#{str($baseName)} {
+                @include media($deviceValue) {
+                    #{$prefix}: $baseValue;
+                }
+            }
+
+            &-#{str($deviceName)}-#{str($baseName)}-force {
+                @include media($deviceValue) {
+                    #{$prefix}: $baseValue !important;
+                }
+            }
+
+            @each $dir in sys(Directions) {
+                &-#{str($deviceName)}-#{str($baseName)}-#{str($dir)} {
+                    @include media($deviceValue) {
+                        #{$prefix}-#{str($dir)}: $baseValue;
+                    }
+                }
+
+                &-#{str($deviceName)}-#{str($baseName)}-#{str($dir)}-force {
+                    @include media($deviceValue) {
+                        #{$prefix}-#{str($dir)}: $baseValue !important;
+                    }
+                }
+            }
+        }
+
+        &-#{$baseName}-horizontal {
+            #{$prefix}-left: $baseValue;
+            #{$prefix}-right: $baseValue;
+
+            &-force {
+                #{$prefix}-left: $baseValue !important;
+                #{$prefix}-right: $baseValue !important;
+            }
+        }
+
+        &-#{$baseName}-vertical {
+            #{$prefix}-top: $baseValue;
+            #{$prefix}-bottom: $baseValue;
+
+            &-force {
+                #{$prefix}-top: $baseValue !important;
+                #{$prefix}-bottom: $baseValue !important;
+            }
+        }
+    }
+}

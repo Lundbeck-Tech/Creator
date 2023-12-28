@@ -1,0 +1,37 @@
+﻿@import "..\\Shared\\ColorProfiles";
+@import "..\\Shared\\Function";
+@import "..\\Shared\\ColorFunction";
+
+@mixin Foo($type: Default) {
+  $name: color;
+  $prop: color;
+
+  @if (equal($type, BG)) {
+    $name: color-bg;
+    $prop: background-color;
+  }
+  @else if (equal($type, Border)) {
+    $name: color-border;
+    $prop: border-color;
+  }
+
+  .#{$name} {
+    @each $id, $map in getMap(CP) {
+      @each $name, $color in $map {
+        &-#{str($id)} {
+          @if (equal($name, Primary)) {
+            #{$prop}: $color;
+          } @else {
+            &-#{str($name)} {
+              #{$prop}: $color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include Foo();
+@include Foo(BG);
+@include Foo(Border);

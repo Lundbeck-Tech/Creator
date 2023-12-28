@@ -1,0 +1,88 @@
+﻿@import "ElementMixin";
+@import "..\\Shared\\Mixin";
+@import "..\\Shared\\Function";
+@import "..\\Shared\\ColorFunction";
+
+@each $name, $map in getMap(CP) {
+  $name: str($name);
+
+  .#{getMap(KW, TextBox) + "-" + $name},
+  .#{getMap(KW, Textarea) + "-" + $name} {
+    @include formTextbox($name);
+
+    &-shadow {
+      $color: lighten(color($name), 28%);
+
+      @if (equal($name, Dark)) {
+        $color: black;
+      }
+
+      @include formTextbox($name);
+      @include shadow(3px, $color);
+    }
+
+    &.#{getMap(KW, ValidateError)} {
+      @include boxGlow(Danger, 8px, Danger);
+      background-color: lighten(color(Danger), 62%) !important;
+    }
+
+    &.#{getMap(KW, ValidatedForm)} {
+      @include boxGlow(Success, 8px, Success);
+      background-color: lighten(color(Success), 54%) !important;
+    }
+  }
+
+  .#{getMap(KW, Button) + "-" + $name} {
+    @include formButtonSolid($name, true);
+
+    &-no-border {
+      @include formButtonSolid($name, false);
+    }
+
+    &-shadow {
+      @include formButtonSolid($name);
+      @include shadow();
+    }
+
+    &-bs {
+      @include formButtonSolid($name, true);
+      @include shadow();
+    }
+  }
+
+  .#{getMap(KW, Button) + "-" + $name} {
+    &-gradient {
+      @include formButtonGradient($name, true);
+
+      &-no-border {
+        @include formButtonGradient($name);
+      }
+
+      &-shadow {
+        @include formButtonGradient($name);
+        @include shadow();
+      }
+
+      &-bs {
+        @include formButtonGradient($name, true);
+        @include shadow();
+      }
+    }
+  }
+
+  .#{getMap(KW, FormControl)}-#{$name} {
+      @include formControl($name);
+  }
+
+    .#{getMap(KW, SelectControl)}-#{$name} {
+        $padVert: 2px;
+
+        @include formControl($name, true, 36px, 4px, 15px);
+        border: getMap(FormControl, BorderSize) solid color($name);
+        padding-left: 6px;
+        padding-top: $padVert;
+        padding-bottom: $padVert;
+        font-weight: bold;
+        margin: getMap(FormControl, Margin);
+    }
+}

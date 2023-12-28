@@ -1,0 +1,53 @@
+﻿@import "MediaConfig";
+
+@mixin media($size: MD, $orientation: Any, $mode: Up, $minWidth: null, $maxWidth: null) {
+    $mode: to-upper-case(inspect($mode));
+    $size: to-upper-case(inspect($size));
+    $width: map-get($mediaBreakpoints, $size);
+    $query: null;
+
+    @if ($minWidth) {
+        $width: $minWidth;
+    }
+
+    @if ($mode == UP) {
+        $query: "(min-width: " + $width + ")";
+    }
+    @else if ($mode == DOWN) {
+        $query: "(max-width: " + $width + ")";
+    }
+    @else if ($mode == ONLY) {
+        $query: "(min-width: " + $width + ")";
+        $max: null;
+
+        @if ($maxWidth) {
+            $max: $maxWidth;
+        }
+        @else {
+            @if ($size == XS) {
+                $max: map-get($mediaBreakpoints, SM);
+            }
+            @else if ($size == SM) {
+                $max: map-get($mediaBreakpoints, MD);
+            }
+            @else if ($size == MD) {
+                $max: map-get($mediaBreakpoints, LG);
+            }
+            @else if ($size == LG) {
+                $max: map-get($mediaBreakpoints, XL);
+            }
+        }
+
+        @if ($max) {
+            $query: $query + " and (max-width: " + $max + ")";
+        }
+    }
+
+    @if not ($orientation == Any) {
+        $query: $query + " and (orientation: " + to-lower-case(inspect($orientation)) + ")";
+    }
+
+    @media #{$query} {
+        @content;
+    }
+}

@@ -1,0 +1,61 @@
+﻿@import "..//Shared//ColorFunction";
+
+@mixin getCheckSliderElement($colorProfileName) {
+    div.checkslider-#{to-lower-case($colorProfileName)} {
+        & > label.switch {
+            display: inline-block;
+            height: 26px;
+            position: relative;
+            width: 48px;
+
+            & > .switch input {
+                display: none;
+            }
+
+            & > .slider {
+                background-color: #fff;
+                bottom: 0;
+                cursor: pointer;
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+                transition: .4s;
+
+                &:before {
+                    background-color: color($colorProfileName, Second);
+                    border: 2px solid color($colorProfileName, Primary);
+                    bottom: 4px;
+                    content: "";
+                    height: 18px;
+                    left: 4px;
+                    position: absolute;
+                    transition: .4s;
+                    width: 18px;
+                }
+
+                &.round {
+                    border-radius: 18px;
+
+                    &:before {
+                        border-radius: 50%;
+                    }
+                }
+            }
+
+            & > input {
+                &:checked + .slider {
+                    background-color: color($colorProfileName, Fourth);
+                }
+
+                &:checked + .slider:before {
+                    transform: translateX(22px);
+                }
+            }
+        }
+    }
+}
+
+@each $name, $profile in getProfiles() {
+    @include getCheckSliderElement($name);
+}

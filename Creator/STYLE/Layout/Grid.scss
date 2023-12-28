@@ -1,0 +1,27 @@
+﻿@import "..\\Shared\\Function";
+
+.grid {
+    @for $count from 1 through KW(CommonTopCount) {
+        grid-template-columns: repeat(2, 1fr);
+
+        &-#{$count} {
+            display: grid;
+            grid-template-rows: auto;
+            grid-template-columns: repeat($count, 1fr);
+
+            &-fit {
+                grid-template-columns: repeat(auto-fit, minmax($count, 1fr));
+            }
+
+            &-fill {
+                grid-template-columns: repeat(auto-fill, minmax($count, 1fr));
+            }
+        }
+    }
+
+    @each $name, $val in getMap(GridGap) {
+        &-gap-#{$name} {
+            grid-gap: $val;
+        }
+    }
+}

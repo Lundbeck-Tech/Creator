@@ -1,0 +1,61 @@
+﻿@import "..\\Shared\\Function";
+
+.pos {
+    @each $name, $property in sys(Positions) {
+        $pos: str($property, l);
+
+        &-#{str($name)} {
+            position: $pos;
+
+            &-force {
+                position: $pos !important;
+            }
+
+            @if (equal($name, Absolute, Fixed, Sticky)) {
+                @each $dir in sys(Directions) {
+                    &-#{str($dir)} {
+                        position: $pos;
+
+                        @if (equal($dir, Left)) {
+                            left: 0;
+                        }
+                        @else if (equal($dir, Right)) {
+                            right: 0;
+                        }
+                        @else if (equal($dir, Top)) {
+                            top: 0;
+                        }
+                        @else if (equal($dir, Bottom)) {
+                            bottom: 0;
+                        }
+
+                        &-force {
+                            position: $pos !important;
+
+                            @if (equal($dir, Left)) {
+                                left: 0 !important;
+                            }
+                            @else if (equal($dir, Right)) {
+                                right: 0 !important;
+                            }
+                            @else if (equal($dir, Top)) {
+                                top: 0 !important;
+                            }
+                            @else if (equal($dir, Bottom)) {
+                                bottom: 0 !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-center {
+        margin: auto;
+
+        &-force {
+            margin: auto !important;
+        }
+    }
+}

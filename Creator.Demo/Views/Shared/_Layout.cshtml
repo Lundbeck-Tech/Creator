@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Creator.Demo</title>
+
+    @RenderSection("Style", required: false)
+</head>
+<body>
+    <div>
+        <bars>
+            <nav>
+                <a href="#">Link One</a>, <a href="#">Link Two</a>
+            </nav>
+        </bars>
+    </div>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - Creator.Demo - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    @RenderSection("Script", required: false)
+
+    <script src="/SCRIPT/Creator.js"></script>
+    <script src="/SCRIPT/Test.js"></script>
+</body>
+</html>

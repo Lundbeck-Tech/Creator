@@ -1,0 +1,38 @@
+﻿@import "..\\Shared\\Function";
+@import "..\\Shared\\Mixin";
+
+.pad {
+    @include paddingAndMargin(Padding);
+
+    &-doc {
+        padding: sys(DefaultPad);
+
+        &-force {
+            padding: sys(DefaultPad) !important;
+        }
+    }
+
+    &-clear {
+        padding: 0;
+
+        &-force {
+            padding: 0 !important;
+        }
+    }
+}
+
+.mrg {
+    @include paddingAndMargin(Margin);
+
+    &-clear {
+        margin: 0;
+
+        &-force {
+            margin: 0 !important;
+        }
+    }
+
+    &-auto {
+        @include autoMargin();
+    }
+}

@@ -1,0 +1,13 @@
+﻿@import "..\\Shared\\Mixin";
+@import "..\\Shared\\Function";
+@import "LayoutMixin";
+
+@include document();
+
+@each $cp, $cv in getMap(CP) {
+    @include document($cp);
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
