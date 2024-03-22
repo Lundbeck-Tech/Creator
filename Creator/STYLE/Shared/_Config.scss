@@ -30,41 +30,6 @@ $fontMediaHeader: ( XS: 12px, SM: 18px, MD: 29px, LG: 44px, XL: 69px );
 $fontIntro: ( XS: 14px, SM: 19px, MD: 25px, LG: 34px, XL: 44px );
 $fixedItems: ( Left, Left-Top, Right, Right-Top, Top, Bottom );
 $stylePrefix: ( Font: Font, MediaRow: Row, MediaColumn: Col, Flex: Flex );
+$headerAndfooterHeights: ( One: 5rem, Two: 10rem, Three: 15rem, Four: 20rem, Five: 25rem, Six: 30rem, Seven: 35rem, Eight: 40rem, Nine: 45rem, Tens: 50rem );
 
-$mapIndex: ( NotifyPosition: ( Data: $notifyPositions),
-                NotifyDuration: ( Data: $notifyDurations ),
-                Pad: ( Data: $padAndMarginValues ),
-                Margin: ( Data: $padAndMarginValues ),
-                Dialog: ( Data: $dialogSizes),
-                Width: ( Data: $widths ),
-                Device: ( Data: $mediaDevices ),
-                Media: ( Data: $mediaBreakpoints ),
-                MediaDevice: ( Data: mediaDevices ),
-                MediaOrientation: ( Data: $mediaOrientation ),
-                MediaRetina: ( Data: $mediaRetina ),
-                CP: ( Data: $CPs ),
-                Sys: ( Data: $systemValues ),
-                PadDirection: ( Data: $paddingDirections ),
-                Keyword: ( Data: $keywords ),
-                KW: ( Data: $keywords ),
-                FontSize: ( Data: $fontSizes ),
-                Airy: ( Data: $airyValues ),
-                HeadTags: ( Data: $headerTags ),
-                FlexAlign: ( Data: $flexAlignItems ),
-                FlexJustify: ( Data: $flexJustifyItems ),
-                FlexItem: ( Data: $flexItems ),
-                FlexItemSize: (Data: $flexItemSizes ),
-                Grid: ( Data: $gridItemSizes ),
-                GridGap: ( Data: $gridGapSizes ),
-                MiscSettings: ( Data: $miscSettings ),
-                Doc: ( Data: $documentWidths ),
-                DocFontSize: ( Data: $documentFontSizes ),
-                FormControl: ( Data: $formControlSpecs ),
-                BoldSize: ( Data: $boldSizes ),
-                MediaFont: ( Data: $fontMedia ),
-                FontIntro: ( Data: $fontIntro ),
-                MediaFontHead: ( Data: $fontMediaHeader),
-                FixedItem: ( Data: $fixedItems ),
-                StylePrefix: ( Data: $stylePrefix ),
-                GridJustify: ( Data : $gridJustifyItems ),
-                GridAlign: ( Data: $gridAlignItems ));
+$mapIndex: ( NotifyPosition: ( Data: $notifyPositions), NotifyDuration: ( Data: $notifyDurations ), Pad: ( Data: $padAndMarginValues ), Margin: ( Data: $padAndMarginValues ), Dialog: ( Data: $dialogSizes), Width: ( Data: $widths ), Device: ( Data: $mediaDevices ), Media: ( Data: $mediaBreakpoints ), MediaDevice: ( Data: mediaDevices ), MediaOrientation: ( Data: $mediaOrientation ), MediaRetina: ( Data: $mediaRetina ), CP: ( Data: $CPs ), Sys: ( Data: $systemValues ), PadDirection: ( Data: $paddingDirections ), Keyword: ( Data: $keywords ), KW: ( Data: $keywords ), FontSize: ( Data: $fontSizes ), Airy: ( Data: $airyValues ), HeadTags: ( Data: $headerTags ), FlexAlign: ( Data: $flexAlignItems ), FlexJustify: ( Data: $flexJustifyItems ), FlexItem: ( Data: $flexItems ), FlexItemSize: (Data: $flexItemSizes ), Grid: ( Data: $gridItemSizes ), GridGap: ( Data: $gridGapSizes ), MiscSettings: ( Data: $miscSettings ), Doc: ( Data: $documentWidths ), DocFontSize: ( Data: $documentFontSizes ), FormControl: ( Data: $formControlSpecs ), BoldSize: ( Data: $boldSizes ), MediaFont: ( Data: $fontMedia ), FontIntro: ( Data: $fontIntro ), MediaFontHead: ( Data: $fontMediaHeader), FixedItem: ( Data: $fixedItems ), StylePrefix: ( Data: $stylePrefix ), GridJustify: ( Data : $gridJustifyItems ), HeaderAndFooterSizes: ( Data : $headerAndfooterHeights), GridAlign: ( Data: $gridAlignItems ));

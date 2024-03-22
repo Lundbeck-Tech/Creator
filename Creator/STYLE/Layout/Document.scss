@@ -1,13 +1,57 @@
-﻿@import "..\\Shared\\Mixin";
-@import "..\\Shared\\Function";
-@import "LayoutMixin";
+﻿@import "..\\Shared\\Function";
 
-@include document();
+$footerHeight: 4rem;
 
-@each $cp, $cv in getMap(CP) {
-    @include document($cp);
+@each $name, $width in getMap(Doc) {
+    html.creator-#{str($name)} {
+        box-sizing: border-box;
+        min-height: 100%;
+
+        & > body {
+            margin: 0px;
+
+            & .view-wrap {
+                position: relative;
+                min-height: 100vh;
+                width: $width;
+                margin: auto;
+
+                & main {
+                    width: 100%;
+                    margin-top: -8px;
+                    padding-bottom: $footerHeight;
+                }
+
+                & > footer {
+                    width: 100%;
+                    bottom: 0;
+                    height: $footerHeight;
+                }
+            } 
+        }
+    }
+}
+
+@each $name, $val in getMap(HeaderAndFooterSizes) {
+    $names: ( Header-Wrap, Footer );
+
+    @each $nm in $names {
+        @if ($nm == "Header-Wrap") {
+            .full-#{str($name)} {
+                width: 100%;
+                padding-bottom: $val;
+            }
+        }
+        @else if ($nm == "Footer") {
+            .footer-#{str($name)} {
+                height: $val;
+                margin-top: $val; 
+            }
+        }
+    }
 }
 
 *, *:before, *:after {
-    box-sizing: inherit;
+    box-sizing: inherit
+    ;
 }
