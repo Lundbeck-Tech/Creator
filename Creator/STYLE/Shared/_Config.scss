@@ -2,10 +2,36 @@
 @import "SystemValues";
 @import "MediaConfig";
 
+$keywords: ( 
+    Index: Ix, 
+    Airy: airy, 
+    Opacity: opacity, 
+    MediaDevice: media-device, 
+    MediaRetina: media-retina, 
+    BG-Contain: bg-contain, 
+    BG-Cover: bg-cover, 
+    BG-Repeat-X: bg-repeat-x, 
+    BG-Repeat-Y: bg-repeat-y, 
+    BG-NoRepeat: bg-norepeat, 
+    HeadTag: h, 
+    Col: col-, 
+    Responsive: r, 
+    Image: img, 
+    Button: btn, 
+    AlignVertical: align-vertical, 
+    TextBox: txt, 
+    Textarea: txt-area, 
+    FormControl: frm-control, 
+    SelectControl: sel, 
+    ValidateError: validate-error, 
+    ValidatedForm: form-validated, 
+    WhiteSpace: ws, 
+    DialogBackgroundColor: white, 
+    Tabs: tabs, 
+    TabsGroup: tabs-group, 
+    CommonTopCount: 12 );
 $padAndMarginValues: ( XXS: 4px, XS: 10px, SM: 16px, MD: 28px, LG: 34px, XL: 42px, XXL: 60px );
-$fontSizes: ( 1: 6px, 2: 9px, 3: 13px, 4: 15px, 5: 19px, 6: 23px, 7: 26px, 8: 30px, 9: 34px, 10: 40px );
 $documentWidths: ( XS: 298px, SM: 444px, MD: 598px, LG: 878px, XL: 1366px, XXL: 1920px, Full: 100% );
-$documentFontSizes: ( XS: map-get($fontSizes, 1), MD: map-get($fontSizes, 3), LG: (map-get($fontSizes, 6)) );
 $airyValues: ( XXS: 4px, XS: 10px, SM: 16px, MD: 24px, LG: 32px, XL: 40px, XXL: 62px );
 $paddingDirections: append(map-get($systemValues, Directions), "LeftRight, TopBottom", comma);
 $widths: ( XXS: 26px, XS: 64px, SM: 104px, MD: 232px, LG: 514px, XL: 788px, XXL: 974px, DOC: map-get($documentWidths, XL) );
@@ -22,14 +48,69 @@ $gridAlignItems: ( Start, End, Center, Stretch, Baseline );
 $notifyPositions: ( Bar: ( Top, Bottom ), Box: ( Top, Bottom, Left, Right ) );
 $notifyDurations: ( Three, Five, Eight, Fourteen, Twenty, Permanent );
 $miscSettings: ( NotifyBoxWidth: 548px, NotifyDefaultPadding: 14px );
-$keywords: ( Airy: airy, Opacity: opacity, MediaDevice: media-device, MediaRetina: media-retina, BG-Cover: bg-cover, BG-Repeat-X: bg-repeat-x, BG-Repeat-Y: bg-repeat-y, BG-NoRepeat: bg-norepeat, Font: f, HeadTag: h, Col: col-, Responsive: r, Image: img, Button: btn, AlignVertical: align-vertical, TextBox: txt, Textarea: txt-area, FormControl: frm-control, SelectControl: sel, ValidateError: validate-error, ValidatedForm: form-validated, WhiteSpace: ws, DialogBackgroundColor: white, Tabs: tabs, TabsGroup: tabs-group, CommonTopCount: 12 );
 $formControlSpecs: ( ButtonHeight: 36px, ButtonPaddingVertical: 4px, ButtonPaddingHorizontal: 16px, BorderRadius: 8px, Margin: 2px, FontSize: 15px, BorderSize: 3px );
 $boldSizes: ( Smallest, Small, Big, Bigger, Large, XL, Largest );
-$fontMedia: ( XS: 9px, SM: 12px, LG: 24px, XL: 48px );
-$fontMediaHeader: ( XS: 12px, SM: 18px, MD: 29px, LG: 44px, XL: 69px );
-$fontIntro: ( XS: 14px, SM: 19px, MD: 25px, LG: 34px, XL: 44px );
+$maxIndex: 99;
+$fontSizes: ( 
+    10: ( SM: 8px, LG: 10px ), 
+    14: ( SM: 10px, LG: 14px ), 
+    17: ( SM: 13px, LG: 17px), 
+    22: ( SM: 17px, LG: 22px ), 
+    26: ( SM: 22px, LG: 26px ), 
+    30: ( SM: 26px, LG: 30px ) );
 $fixedItems: ( Left, Left-Top, Right, Right-Top, Top, Bottom );
 $stylePrefix: ( Font: Font, MediaRow: Row, MediaColumn: Col, Flex: Flex );
 $headerAndfooterHeights: ( One: 5rem, Two: 10rem, Three: 15rem, Four: 20rem, Five: 25rem, Six: 30rem, Seven: 35rem, Eight: 40rem, Nine: 45rem, Tens: 50rem );
+$backgroundPositions: ( 
+    None,
+    Top, 
+    Bottom, 
+    Left, 
+    Right, 
+    Center );
+$heads: ( 
+    H1: ( SM: 22px, LG: 33px ), 
+    H2: ( SM: 19px, LG: 27px ), 
+    H3: ( SM: 16px, LG: 24px ), 
+    H4: ( SM: 13px, LG: 20px ), 
+    H5: ( SM: 10px, LG: 16px ), 
+    H6: ( SM: 8px, LG: 13px ) );
 
-$mapIndex: ( NotifyPosition: ( Data: $notifyPositions), NotifyDuration: ( Data: $notifyDurations ), Pad: ( Data: $padAndMarginValues ), Margin: ( Data: $padAndMarginValues ), Dialog: ( Data: $dialogSizes), Width: ( Data: $widths ), Device: ( Data: $mediaDevices ), Media: ( Data: $mediaBreakpoints ), MediaDevice: ( Data: mediaDevices ), MediaOrientation: ( Data: $mediaOrientation ), MediaRetina: ( Data: $mediaRetina ), CP: ( Data: $CPs ), Sys: ( Data: $systemValues ), PadDirection: ( Data: $paddingDirections ), Keyword: ( Data: $keywords ), KW: ( Data: $keywords ), FontSize: ( Data: $fontSizes ), Airy: ( Data: $airyValues ), HeadTags: ( Data: $headerTags ), FlexAlign: ( Data: $flexAlignItems ), FlexJustify: ( Data: $flexJustifyItems ), FlexItem: ( Data: $flexItems ), FlexItemSize: (Data: $flexItemSizes ), Grid: ( Data: $gridItemSizes ), GridGap: ( Data: $gridGapSizes ), MiscSettings: ( Data: $miscSettings ), Doc: ( Data: $documentWidths ), DocFontSize: ( Data: $documentFontSizes ), FormControl: ( Data: $formControlSpecs ), BoldSize: ( Data: $boldSizes ), MediaFont: ( Data: $fontMedia ), FontIntro: ( Data: $fontIntro ), MediaFontHead: ( Data: $fontMediaHeader), FixedItem: ( Data: $fixedItems ), StylePrefix: ( Data: $stylePrefix ), GridJustify: ( Data : $gridJustifyItems ), HeaderAndFooterSizes: ( Data : $headerAndfooterHeights), GridAlign: ( Data: $gridAlignItems ));
+$mapIndex: ( 
+    Heads: ( Data: $heads ), 
+    NotifyPosition: ( Data: $notifyPositions), 
+    NotifyDuration: ( Data: $notifyDurations ), 
+    Pad: ( Data: $padAndMarginValues ), 
+    Margin: ( Data: $padAndMarginValues ), 
+    Dialog: ( Data: $dialogSizes), 
+    Width: ( Data: $widths ), 
+    Device: ( Data: $mediaDevices ), 
+    Media: ( Data: $mediaBreakpoints ), 
+    MediaDevice: ( Data: mediaDevices ), 
+    MediaOrientation: ( Data: $mediaOrientation ), 
+    MediaRetina: ( Data: $mediaRetina ), 
+    CP: ( Data: $CPs ), 
+    Sys: ( Data: $systemValues ), 
+    PadDirection: ( Data: $paddingDirections ), 
+    Keyword: ( Data: $keywords ), 
+    KW: ( Data: $keywords ), 
+    FontSizes: ( Data: $fontSizes ), 
+    Airy: ( Data: $airyValues ), 
+    HeadTags: ( Data: $headerTags ), 
+    FlexAlign: ( Data: $flexAlignItems ), 
+    FlexJustify: ( Data: $flexJustifyItems ), 
+    FlexItem: ( Data: $flexItems ), 
+    FlexItemSize: (Data: $flexItemSizes ), 
+    Grid: ( Data: $gridItemSizes ), 
+    GridGap: ( Data: $gridGapSizes ), 
+    MiscSettings: ( Data: $miscSettings ), 
+    Doc: ( Data: $documentWidths ), 
+    FormControl: ( Data: $formControlSpecs ), 
+    BoldSize: ( Data: $boldSizes ), 
+    FixedItem: ( Data: $fixedItems ), 
+    StylePrefix: ( Data: $stylePrefix ), 
+    GridJustify: ( Data : $gridJustifyItems ), 
+    MaxIndex: ( Data: $maxIndex ),
+    HeaderAndFooterSizes: ( Data : $headerAndfooterHeights), 
+    GridAlign: ( Data: $gridAlignItems ), 
+    BgPositions: ( Data : $backgroundPositions ) );

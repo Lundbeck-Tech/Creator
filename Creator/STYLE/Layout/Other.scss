@@ -5,6 +5,21 @@
 @import "..\\Shared\\Mixin";
 @import "LayoutMixin";
 
+$maxIndex: getMap(MaxIndex);
+$i: 0;
+
+@while ($i <= $maxIndex) {
+    .#{str(KW((Index)))}-#{$i} {
+        z-index: $i;
+
+        &-force {
+            z-index: $i !important;
+        }
+    }
+
+    $i: $i + 1;
+}
+
 .align {
     &-left {
         text-align: left;
@@ -51,29 +66,65 @@
     }
 }
 
-.#{KW(Responsive)} {
-    @include responsive(true, false);
+.a-clean {
+    text-decoration: none;
 
-    &-full-height {
-        @include responsive(true, false);
-        height: 100%;
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
 
-        &-center {
-            @include responsive(true);
-            height: 100%;
+    &-force {
+        text-decoration: none !important;
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
         }
     }
+}
+
+.#{KW(Responsive)} {
+    @include responsive(true, false);
 
     &-center {
         @include responsive(true);
     }
 }
 
-.#{KW(BG-Cover)} {
-    @include bgCover();
+@each $pos in getMap(BgPositions) {
+    @if not ($pos == None) {
+        .bg-contain-#{str($pos)} {
+            @include bgContain(Contain, false, null, $pos, false);
 
-    &-fixed {
-        @include bgCover(true);
+            &-fixed {
+                @include bgContain(Contain, true, null, $pos, false);
+
+                &-force {
+                    @include bgContain(Contain, true, null, $pos, true);
+                }
+            }
+
+            &-force {
+                @include bgContain(Contain, false, null, $pos, true);
+            }
+        }
+
+        .bg-cover-#{str($pos)} {
+            @include bgContain(Cover, false, null, $pos, false);
+
+            &-fixed {
+                @include bgContain(Cover, true, null, $pos, false);
+
+                &-force {
+                    @include bgContain(Cover, true, null, $pos, true);
+                }
+            }
+
+            &-force {
+                @include bgContain(Cover, false, null, $pos, true);
+            }
+        }
     }
 }
 

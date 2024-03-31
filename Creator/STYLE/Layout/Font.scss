@@ -1,9 +1,10 @@
 @import "..//Shared//Function";
 @import "..//Shared//Media";
+@import "_LayoutMixin";
 
 $pre: str(getPrefix(Font));
 
-.#{$pre}-bold {
+.bold {
     font-weight: bold;
 
     &-force {
@@ -11,70 +12,78 @@ $pre: str(getPrefix(Font));
     }
 }
 
-@each $z in getMap(BoldSize) {
-    $size: 0px;
+@each $fonts in getMap(FontSizes) {
+    $vals: nth($fonts, 2);
+    $nr: nth($fonts, 1);
 
-    @if (str($z) == smallest) {
-        $size: 9px;
-    }
-    @else if (str($z) == small) {
-        $size: 12px;
-    }
-    @else if (str($z) == big) {
-        $size: 20px;
-    }
-    @else if (str($z) == bigger) {
-        $size: 26px;
-    }
-    @else if (str($z) == large) {
-        $size: 34px;
-    }
-    @else if (str($z) == xl) {
-        $size: 47px;
-    }
-    @else if (str($z) == largest) {
-        $size: 56px;
-    }
+    .#{$pre}-#{$nr} {
+        @include font(map-get($vals, LG));
 
-    .#{$pre}-bold-#{str($z)} {
-        font-size: $size;
-        font-weight: bold;
+        &-bold {
+            @include font(map-get($vals, LG), bold);
+
+            &-force {
+                @include font(map-get($vals, LG), bold, true);
+            }
+        }
 
         &-force {
-            font-size: $size !important;
-            font-weight: bold !important;
+            @include font(map-get($vals, LG, true));
+        }
+    }
+
+    .#{$pre}-r-#{$nr} {
+        @include font(map-get($vals, SM));
+
+        &-bold {
+            @include font(map-get($vals, SM), bold);
+
+            &-force {
+                @include font(map-get($vals, SM), bold, true);
+            }
+        }
+
+        &-force {
+            @include font(map-get($vals, SM, true));
+        }
+    }
+
+    @include media() {
+        .#{$pre}-r-#{$nr} {
+            @include font(map-get($vals, LG));
+
+            &-bold {
+                @include font(map-get($vals, LG), bold);
+
+                &-force {
+                    @include font(map-get($vals, LG), bold, true);
+                }
+            }
+
+            &-force {
+                @include font(map-get($vals, LG, true));
+            }
         }
     }
 }
 
-.#{$pre}-reset {
-    font-family: unset;
-    font-size: unset;
-    font-weight: unset;
+@each $fonts in getMap(Heads) {
+    $vals: nth($fonts, 2);
+    $tagName: nth($fonts, 1);
+    $lg: map-get($vals, LG);
+    $sm: map-get($vals, SM);
 
-    &-force {
-        font-family: unset !important;
-        font-size: unset !important;
-        font-weight: unset !important;
+    .#{str($tagName)} {
+        font-size: $lg;
     }
-}
 
-@each $name, $prop in getMap(FontIntro) {
-    @include media($name) {
-        .#{$pre}-intro {
-            $mrg: 12px;
+    .#{str($tagName)}-r {
+        font-size: $sm;
+    }
 
-            font-size: $prop;
-            font-weight: 800;
-            margin-top: $mrg;
-            margin-bottom: $mrg;
-
-            &-force {
-                font-size: $prop !important;
-                font-weight: 800 !important;
-                margin-top: $mrg !important;
-                margin-bottom: $mrg !important;
-            }
+    @include media() {
+        .#{str($tagName)}-r {
+            font-size: $lg;
         }
     }
 }

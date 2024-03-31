@@ -350,3 +350,14 @@ $footerHeight: 2.8rem;
         }
     }
 }
+
+@mixin font($size, $weight: normal, $force: false) {
+    @if ($force == false) {
+        font-size: $size;
+        font-weight: $weight;
+    }
+    @else {
+        font-size: $size !important;
+        font-weight: $weight !important;
+    }
+}

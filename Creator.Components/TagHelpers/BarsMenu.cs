@@ -5,6 +5,7 @@
 
 using Creator.Components;
 using LundbeckConsulting.Components.Core.Components;
+using LundbeckConsulting.Components.Core.Components.Extensions;
 using LundbeckConsulting.Components.Core.Components.Repos;
 using LundbeckConsulting.Components.Core.Components.TagHelpers;
 using LundbeckConsulting.Components.Extensions;
@@ -12,7 +13,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using System.Threading.Tasks;
 
 namespace Creator.TagHelpers
 {

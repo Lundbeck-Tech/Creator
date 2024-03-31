@@ -27,27 +27,13 @@
     }
 }
 
-@mixin responsive($restrain: true, $center: true, $pad: false) {
-    $min: 0px;
-    $max: 100%;
-
-    @if ($restrain) {
-        $max: getMap(Width, DOC);
-    }
-
+@mixin responsive($restrain: true, $center: true) {
     width: 100%;
-    min-width: $min;
-    max-width: $max;
+    max-width: 100%;
+    height: auto;
 
     @if ($center) {
         @include autoMargin();
-    }
-
-    @if ($pad) {
-        padding: sys(DefaultPad);
-    }
-    @else {
-        padding: 0;
     }
 }
 
@@ -92,9 +78,57 @@
     margin-right: auto;
 }
 
-@mixin bgCover($fixed: false, $img: null) {
+@mixin bgContainSub($prefix: Contain, $force: false) {
+    $prefix: str($prefix);
+
+    background-size: $prefix;
+
+    @if ($force) {
+        background-size: $prefix !important;
+    }
+}
+
+@mixin bgContain($pre: Contain, $fixed: false, $img: null, $position: null, $force: null) {
+    @include bgContainSub($pre, $force);
+
+    @if not ($force) {
+        background-repeat: no-repeat;
+    }
+    @else {
+        background-repeat: no-repeat !important;
+    }
+
+    @if ($position) {
+        @if not ($force) {
+            background-position: str($position);
+        }
+        @else {
+            background-position: str($position) !important;
+        }
+    }
+
+    @if ($fixed) {
+        @if not ($force) {
+            background-attachment: fixed;
+        }
+        @else {
+            background-attachment: fixed !important;
+        }
+    }
+
+    @if ($img) {
+        @if not ($force) {
+            background-image: url($img);
+        }
+        @else {
+            background-image: url($img) !important;
+        }
+    }
+}
+
+@mixin bgCover($fixed: false, $img: null, $position: center) {
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: str($position);
     background-size: cover;
 
     @if ($fixed) {

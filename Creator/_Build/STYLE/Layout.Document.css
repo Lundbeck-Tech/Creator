@@ -5,18 +5,18 @@ html.creator-xs {
 html.creator-xs > body {
   margin: 0px;
 }
-html.creator-xs > body .view-wrap {
+html.creator-xs > body .main-content-wrap {
   position: relative;
   min-height: 100vh;
   width: 298px;
   margin: auto;
 }
-html.creator-xs > body .view-wrap main {
+html.creator-xs > body .main-content-wrap main {
   width: 100%;
   margin-top: -8px;
   padding-bottom: 4rem;
 }
-html.creator-xs > body .view-wrap > footer {
+html.creator-xs > body .main-content-wrap > footer {
   width: 100%;
   bottom: 0;
   height: 4rem;
@@ -29,18 +29,18 @@ html.creator-sm {
 html.creator-sm > body {
   margin: 0px;
 }
-html.creator-sm > body .view-wrap {
+html.creator-sm > body .main-content-wrap {
   position: relative;
   min-height: 100vh;
   width: 444px;
   margin: auto;
 }
-html.creator-sm > body .view-wrap main {
+html.creator-sm > body .main-content-wrap main {
   width: 100%;
   margin-top: -8px;
   padding-bottom: 4rem;
 }
-html.creator-sm > body .view-wrap > footer {
+html.creator-sm > body .main-content-wrap > footer {
   width: 100%;
   bottom: 0;
   height: 4rem;
@@ -53,18 +53,18 @@ html.creator-md {
 html.creator-md > body {
   margin: 0px;
 }
-html.creator-md > body .view-wrap {
+html.creator-md > body .main-content-wrap {
   position: relative;
   min-height: 100vh;
   width: 598px;
   margin: auto;
 }
-html.creator-md > body .view-wrap main {
+html.creator-md > body .main-content-wrap main {
   width: 100%;
   margin-top: -8px;
   padding-bottom: 4rem;
 }
-html.creator-md > body .view-wrap > footer {
+html.creator-md > body .main-content-wrap > footer {
   width: 100%;
   bottom: 0;
   height: 4rem;
@@ -77,18 +77,18 @@ html.creator-lg {
 html.creator-lg > body {
   margin: 0px;
 }
-html.creator-lg > body .view-wrap {
+html.creator-lg > body .main-content-wrap {
   position: relative;
   min-height: 100vh;
   width: 878px;
   margin: auto;
 }
-html.creator-lg > body .view-wrap main {
+html.creator-lg > body .main-content-wrap main {
   width: 100%;
   margin-top: -8px;
   padding-bottom: 4rem;
 }
-html.creator-lg > body .view-wrap > footer {
+html.creator-lg > body .main-content-wrap > footer {
   width: 100%;
   bottom: 0;
   height: 4rem;
@@ -101,18 +101,18 @@ html.creator-xl {
 html.creator-xl > body {
   margin: 0px;
 }
-html.creator-xl > body .view-wrap {
+html.creator-xl > body .main-content-wrap {
   position: relative;
   min-height: 100vh;
   width: 1366px;
   margin: auto;
 }
-html.creator-xl > body .view-wrap main {
+html.creator-xl > body .main-content-wrap main {
   width: 100%;
   margin-top: -8px;
   padding-bottom: 4rem;
 }
-html.creator-xl > body .view-wrap > footer {
+html.creator-xl > body .main-content-wrap > footer {
   width: 100%;
   bottom: 0;
   height: 4rem;
@@ -125,18 +125,18 @@ html.creator-xxl {
 html.creator-xxl > body {
   margin: 0px;
 }
-html.creator-xxl > body .view-wrap {
+html.creator-xxl > body .main-content-wrap {
   position: relative;
   min-height: 100vh;
   width: 1920px;
   margin: auto;
 }
-html.creator-xxl > body .view-wrap main {
+html.creator-xxl > body .main-content-wrap main {
   width: 100%;
   margin-top: -8px;
   padding-bottom: 4rem;
 }
-html.creator-xxl > body .view-wrap > footer {
+html.creator-xxl > body .main-content-wrap > footer {
   width: 100%;
   bottom: 0;
   height: 4rem;
@@ -149,18 +149,18 @@ html.creator-full {
 html.creator-full > body {
   margin: 0px;
 }
-html.creator-full > body .view-wrap {
+html.creator-full > body .main-content-wrap {
   position: relative;
   min-height: 100vh;
   width: 100%;
   margin: auto;
 }
-html.creator-full > body .view-wrap main {
+html.creator-full > body .main-content-wrap main {
   width: 100%;
   margin-top: -8px;
   padding-bottom: 4rem;
 }
-html.creator-full > body .view-wrap > footer {
+html.creator-full > body .main-content-wrap > footer {
   width: 100%;
   bottom: 0;
   height: 4rem;
