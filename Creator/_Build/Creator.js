@@ -145,6 +145,19 @@ tabs.forEach((tab) => {
 
 	
 
+﻿const setFocus = () => {
+    let tmp = document.querySelector("input.focus");
+
+    if (tmp !== null) {
+        tmp.focus();
+    }
+};
+
+setFocus();
+
+
+	
+
 ﻿/*
     @Author     Stein Lundbeck
     @Date       29.08.2020
