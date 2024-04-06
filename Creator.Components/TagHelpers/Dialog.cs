@@ -52,7 +52,7 @@ namespace Creator.Components.TagHelpers
             }
 
             title.AddCssClass("title");
-            title.InnerHtml.Append(this.SiteTitle);
+            title.InnerHtml.Append(this.Title);
             closeIcon.AddCssClass("close-command");
             body.AddCssClass("body");
             okCommand.AddCssClass("ok-command");
@@ -63,7 +63,7 @@ namespace Creator.Components.TagHelpers
                 header.AddCssClass("solid");
             }
 
-            title.InnerHtml.Append(this.SiteTitle);
+            title.InnerHtml.Append(this.Title);
             title.AddCssClass("title");
             header.InnerHtml.AppendHtml(title);
             header.InnerHtml.AppendHtml(closeIcon);
@@ -103,7 +103,7 @@ namespace Creator.Components.TagHelpers
         /// Title of dialog
         /// </summary>
         [HtmlAttributeName("title")]
-        public new string SiteTitle { get; set; } = default;
+        public new string Title { get; set; } = default;
 
         /// <summary>
         /// If true the dialog will be visible on load
