@@ -1,88 +1,78 @@
-﻿@import "ElementMixin";
-@import "..\\Shared\\Mixin";
-@import "..\\Shared\\Function";
+﻿@import "..\\Shared\\Function";
 @import "..\\Shared\\ColorFunction";
 
+@mixin controllBase($borderColor, $foreColor, $backColor) {
+    $padHor: 16px;
+    $padVer: 5px;
+    $mrg: 2px;
+
+    color: $foreColor;
+    font-size: 14px;
+    font-weight: normal;
+    padding-top: $padVer;
+    padding-bottom: $padVer;
+    padding-left: $padHor;
+    padding-right: $padHor;
+    border-radius: 4px;
+    border: 2px solid rgba($borderColor, 0.2);
+    background-color: $backColor;
+    transition: all 0.3s ease-in-out;
+    margin-left: $mrg;
+    margin-right: $mrg;
+
+    &:focus {
+        border: 2px solid rgba($borderColor, 0.8);
+    }
+
+    &:hover {
+        background-color: rgba($backColor, 0.5);
+    }
+}
+
+@mixin txt($CPname) {
+    $fore: color($CPname);
+    $back: rgba(color($CPname, Fifth), 0.2);
+
+    @include controllBase($fore, $fore, $back);
+
+    &:focus {
+        background-color: white;
+    }
+}
+
+@mixin btn($CPname, $borderColor: null) {
+    @if not ($borderColor) {
+        $borderColor: rgba(color($CPname, Third), 0.6);
+    }
+
+    @include controllBase($borderColor, color($CPname), rgba(color($CPname, Fifth), 0.2));
+
+    @if ($borderColor) {
+        border-color: $borderColor;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(color($CPname, Fifth), 0.5);
+    }
+}
+
 @each $name, $map in getMap(CP) {
-  $name: str($name);
-
-  .#{getMap(KW, TextBox) + "-" + $name},
-  .#{getMap(KW, Textarea) + "-" + $name} {
-    @include formTextbox($name);
-
-    &-shadow {
-      $color: lighten(color($name), 28%);
-
-      @if (equal($name, Dark)) {
-        $color: black;
-      }
-
-      @include formTextbox($name);
-      @include shadow(3px, $color);
+    .#{CssKW(TextBox)}-#{str($name)} {
+        @include txt($name);
     }
 
-    &.#{getMap(KW, ValidateError)} {
-      @include boxGlow(Danger, 8px, Danger);
-      background-color: lighten(color(Danger), 62%) !important;
-    }
+    .#{CssKW(Button)}-#{str($name)} {
+        @include btn($name);
 
-    &.#{getMap(KW, ValidatedForm)} {
-      @include boxGlow(Success, 8px, Success);
-      background-color: lighten(color(Success), 54%) !important;
-    }
-  }
+        &-gradient {
+            @include btn($name, rgba(color($name, Fourth), 0.4));
+            background: linear-gradient(rgba(color($name, Fifth), 0.3) 0%, rgba(color($name, Fourth), 0.6) 100%);
+            border-color: rgba(color($name), 0.4);
 
-  .#{getMap(KW, Button) + "-" + $name} {
-    @include formButtonSolid($name, true);
-
-    &-no-border {
-      @include formButtonSolid($name, false);
-    }
-
-    &-shadow {
-      @include formButtonSolid($name);
-      @include shadow();
-    }
-
-    &-bs {
-      @include formButtonSolid($name, true);
-      @include shadow();
-    }
-  }
-
-  .#{getMap(KW, Button) + "-" + $name} {
-    &-gradient {
-      @include formButtonGradient($name, true);
-
-      &-no-border {
-        @include formButtonGradient($name);
-      }
-
-      &-shadow {
-        @include formButtonGradient($name);
-        @include shadow();
-      }
-
-      &-bs {
-        @include formButtonGradient($name, true);
-        @include shadow();
-      }
-    }
-  }
-
-  .#{getMap(KW, FormControl)}-#{$name} {
-      @include formControl($name);
-  }
-
-    .#{getMap(KW, SelectControl)}-#{$name} {
-        $padVert: 2px;
-
-        @include formControl($name, true, 36px, 4px, 15px);
-        border: getMap(FormControl, BorderSize) solid color($name);
-        padding-left: 6px;
-        padding-top: $padVert;
-        padding-bottom: $padVert;
-        font-weight: bold;
-        margin: getMap(FormControl, Margin);
+            &:hover {
+                background: linear-gradient(rgba(color($name, Fifth), 0.4) 0%, rgba(color($name, Fourth), 0.8) 100%);
+            }
+        }
     }
 }

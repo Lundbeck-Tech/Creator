@@ -20,7 +20,7 @@ $keywords: (
     Button: btn, 
     AlignVertical: align-vertical, 
     TextBox: txt, 
-    Textarea: txt-area, 
+    Textarea: txt, 
     FormControl: frm-control, 
     SelectControl: sel, 
     ValidateError: validate-error, 
@@ -53,7 +53,7 @@ $justifyContentItems: ( Start, End, Center, Stretch, Space-around, Space-between
 $notifyPositions: ( Bar: ( Top, Bottom ), Box: ( Top, Bottom, Left, Right ) );
 $notifyDurations: ( Three, Five, Eight, Fourteen, Twenty, Permanent );
 $miscSettings: ( NotifyBoxWidth: 548px, NotifyDefaultPadding: 14px );
-$formControlSpecs: ( ButtonHeight: 36px, ButtonPaddingVertical: 4px, ButtonPaddingHorizontal: 16px, BorderRadius: 8px, Margin: 2px, FontSize: 15px, BorderSize: 3px );
+$formControlSpecs: ( ButtonHeight: 36px, ButtonPaddingVertical: 4px, ButtonPaddingHorizontal: 16px, BorderRadius: 8px, Margin: 2px, FontSize: 15px, BorderSize: 2px );
 $boldSizes: ( Smallest, Small, Big, Bigger, Large, XL, Largest );
 $maxIndex: 99;
 $fontSizes: ( 
