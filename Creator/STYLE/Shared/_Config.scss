@@ -29,7 +29,11 @@ $keywords: (
     DialogBackgroundColor: white, 
     Tabs: tabs, 
     TabsGroup: tabs-group, 
-    CommonTopCount: 12 );
+    CommonTopCount: 12,
+    GridCollapse: collapse,
+    Placement: place,
+    GridJustify: just,
+    GridAlign: align );
 $padAndMarginValues: ( XXS: 4px, XS: 10px, SM: 16px, MD: 28px, LG: 34px, XL: 42px, XXL: 60px );
 $documentWidths: ( XS: 298px, SM: 444px, MD: 598px, LG: 878px, XL: 1366px, XXL: 1920px, Full: 100% );
 $airyValues: ( XXS: 4px, XS: 10px, SM: 16px, MD: 24px, LG: 32px, XL: 40px, XXL: 62px );
@@ -42,9 +46,10 @@ $flexJustifyItems: ( Center: center, End: flex-end, Start: flex-start, Stretch: 
 $flexItemSizes: ( Auto: auto, XXS: 76px, XS: 120px, SM: 200px, MD: 280px, LG: 368px, XL: 498px, XXL: 612px, 10: 10%, 25: 25%, 50: 50%, 75: 75%, 90: 90%, 100: 100% );
 $flexItems: ( Resize: 1 1, Shrink: 0 1, Grow: 1 0, Fixed: 0 0 );
 $gridItemSizes: ( XS: 8px, SM: 60px, MD: 144px, LG: 366px, XL: 536px, XXL: 768px );
-$gridGapSizes: ( XS: 6px, SM: 14px, MD: 22px, LG: 38px, XL: 1fr );
+$gridGapSizes: ( XS: 26px, SM: 34px, MD: 50px, LG: 63px, XL: 1fr );
 $gridJustifyItems: ( Start, End, Center, Stretch );
 $gridAlignItems: ( Start, End, Center, Stretch, Baseline );
+$justifyContentItems: ( Start, End, Center, Stretch, Space-around, Space-between, Space-evenly );
 $notifyPositions: ( Bar: ( Top, Bottom ), Box: ( Top, Bottom, Left, Right ) );
 $notifyDurations: ( Three, Five, Eight, Fourteen, Twenty, Permanent );
 $miscSettings: ( NotifyBoxWidth: 548px, NotifyDefaultPadding: 14px );
@@ -101,16 +106,17 @@ $mapIndex: (
     FlexJustify: ( Data: $flexJustifyItems ), 
     FlexItem: ( Data: $flexItems ), 
     FlexItemSize: (Data: $flexItemSizes ), 
-    Grid: ( Data: $gridItemSizes ), 
-    GridGap: ( Data: $gridGapSizes ), 
     MiscSettings: ( Data: $miscSettings ), 
     Doc: ( Data: $documentWidths ), 
     FormControl: ( Data: $formControlSpecs ), 
     BoldSize: ( Data: $boldSizes ), 
     FixedItem: ( Data: $fixedItems ), 
     StylePrefix: ( Data: $stylePrefix ), 
+    Grid: ( Data: $gridItemSizes ), 
+    GridGap: ( Data: $gridGapSizes ), 
     GridJustify: ( Data : $gridJustifyItems ), 
+    GridAlign: ( Data: $gridAlignItems ), 
+    GridContent: ( Data : $justifyContentItems),
     MaxIndex: ( Data: $maxIndex ),
     HeaderAndFooterSizes: ( Data : $headerAndfooterHeights), 
-    GridAlign: ( Data: $gridAlignItems ), 
     BgPositions: ( Data : $backgroundPositions ) );

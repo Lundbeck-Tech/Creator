@@ -1,73 +1,123 @@
 ﻿@import "..\\Shared\\Function";
+@import "..\\Shared\\Media";
 
-@mixin gridFormat($method: Justify, $value: Start) {
-    $value: to-upper-case($value);
-    $method: to-upper-case($method);
-    $val: start;
-
-    @if ($value == "START") {
-        $val: start;
+@mixin gridContent($col, $row: 0, $justify: null, $align: null, $display: null) {
+    @if ($row == 0) {
+        $row: auto;
     }
-    @else if ($value == "END") {
-        $val: end;
-    }
-    @else if ($value == "CENTER") {
-        $val: center;
-    }
-    @else if ($value == "STRETCH") {
-        $val: stretch;
-    }
-    @else if ($value == "BASELINE") {
-        $val: baseline;
+    @else {
+        $row: repeat($row, 1fr);
     }
 
-    @if ($method == "JUSTIFY") {
-        justify-items: to-lower-case($val);
+    @if not ($display == null) {
+        display: str($display);
     }
-    @else if ($method == "ALIGN") {
-        align-items: to-lower-case($val);
+
+    @if ($col == 1) {
+        grid-template-columns: 1fr;
+    }
+    @else {
+        grid-template-columns: repeat($col, 1fr);
+    }
+
+    grid-template-rows: $row;
+
+    @if not ($justify == null) {
+        justify-items: str($justify);
+    }
+
+    @if not ($align == null) {
+        align-items: str($align);
     }
 }
 
-@mixin gridLoop($count) {
-    @each $name in getMap(GridJustify) {
-        &-#{$count} {
-            display: grid;
-            grid-template-rows: auto;
-            grid-template-columns: repeat($count, 1fr);
+@mixin gridMedia($col, $row, $just: null, $algn: null) {
+    $name: $col;
 
-            &-#{to-lower-case($name)} {
-                display: grid;
-                grid-template-rows: auto;
-                grid-template-columns: repeat($count, 1fr);
+    @if ($row > 0) {
+        $name: $name + "-" $row;
+    }
 
-                @if not ($name == "Baseline") {
-                    @include gridFormat(Justify, $name);
+    @include media() {
+        &-#{CssKW(Responsive)} {
+            grid-template-columns: repeat($col, 1fr);
+        }
+    }
+}
+
+@mixin gridLoop($colCount, $rowCount: 0) {
+    @if ($rowCount == 0) {
+        &-#{$colCount} {
+            @include gridContent($colCount, $rowCount, null, null, Grid);
+
+            @if ($colCount > 1) {
+                &-#{CssKW(Responsive)} {
+                    @include gridContent(1, $rowCount, null, null, Grid);
                 }
+
+                @include gridMedia($colCount, $rowCount);
             }
 
-            @each $align in getMap(GridAlign) {
-                &-#{to-lower-case($name)}-#{to-lower-case($align)} {
-                    display: grid;
-                    grid-template-rows: auto;
-                    grid-template-columns: repeat($count, 1fr);
+            @each $justify in getMap(GridJustify) {
+                &-#{str($justify)} {
+                    @include gridContent($colCount, $rowCount, $justify, null, Grid);
 
-                    @include gridFormat(Justify, $name);
-                    @include gridFormat(Align, $align);
+                    &-#{CssKW(Responsive)} {
+                        @include gridContent(1, $rowCount, $justify, null, Grid);
+                    }
+
+                    @include gridMedia($colCount, $rowCount, $justify);
+                }
+
+                @each $align in getMap(GridAlign) {
+                    &-#{str($justify)}-#{str($align)} {
+                        @include gridContent($colCount, $rowCount, $justify, $align, Grid);
+
+                        &-#{CssKW(Responsive)} {
+                            @include gridContent(1, $rowCount, $justify, $align, Grid);
+                        }
+
+                        @include gridMedia($colCount, $rowCount, $justify, $align);
+                    }
                 }
             }
+        }
+    }
+    @else {
+        &-#{$colCount}-#{$rowCount} {
+            @include gridContent($colCount, $rowCount, null, null, Grid);
+
+            &-#{CssKW(Responsive)} {
+                @include gridContent(1, $rowCount, null, null, Grid);
+            }
+
+            @include gridMedia($colCount, $rowCount);
         }
     }
 }
 
 .grid {
-    @for $count from 1 through KW(CommonTopCount) {
-        @include gridLoop($count);
+    @for $col from 1 through KW(CommonTopCount) {
+        @include gridLoop($col);
+        @include gridMedia($col, 0);
+
+        @for $row from 1 through KW(CommonTopCount) {
+            @include gridLoop($col, $row);
+        }
     }
 
     @each $name, $val in getMap(GridGap) {
-        &-gap-#{to-lower-case($name)} {
+        &-gap-#{str($name)} {
             grid-gap: $val;
+        }
+    }
+
+    @each $just in getMap(GridContent) {
+        @each $algn in getMap(GridContent) {
+            &-#{str($just)}-#{str($algn)} {
+                justify-content: str($just);
+                align-content: str($algn);
+            }
         }
     }
 }

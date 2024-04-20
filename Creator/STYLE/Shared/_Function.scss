@@ -408,6 +408,10 @@ $enumerableProtectedWords: (First, Middle, Last);
     @return getMap(KW, $name);
 }
 
+@function CssKW($name) {
+    @return to-lower-case(getMap(KW, $name));
+}
+
 @function getPrefix($name: font) {
     @return getMap(StylePrefix, $name);
 }

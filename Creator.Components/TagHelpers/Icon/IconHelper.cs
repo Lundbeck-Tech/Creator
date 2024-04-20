@@ -523,7 +523,7 @@ namespace Creator.Components.TagHelpers.Icon
                 new IconRecordModel(FontAwesomeIcon.ThumbsUpFull, "thumbs-up"),
                 new IconRecordModel(FontAwesomeIcon.ThumbsDown, "thumbs-down", "far"),
                 new IconRecordModel(FontAwesomeIcon.ThumbsDownFull, "thumbs-down"),
-                new IconRecordModel(FontAwesomeIcon.MoneyCheckout, "money-checkout-alt"),
+                new IconRecordModel(FontAwesomeIcon.MoneyBill, "money-bill"),
                 new IconRecordModel(FontAwesomeIcon.Truck, "truck"),
                 new IconRecordModel(FontAwesomeIcon.Tasks, "tasks"),
                 new IconRecordModel(FontAwesomeIcon.Visa, "cc-visa", "fab"),
@@ -611,7 +611,9 @@ namespace Creator.Components.TagHelpers.Icon
                 new IconRecordModel(FontAwesomeIcon.IdBadge, "id-badge", "far"),
                 new IconRecordModel(FontAwesomeIcon.IdBadgeFull, "id-badge"),
                 new IconRecordModel(FontAwesomeIcon.IdCard, "id-card", "far"),
-                new IconRecordModel(FontAwesomeIcon.IdCardFull, "id-card")
+                new IconRecordModel(FontAwesomeIcon.IdCardFull, "id-card"),
+                new IconRecordModel(FontAwesomeIcon.Plus, "plus"),
+                new IconRecordModel(FontAwesomeIcon.ArrowUpRightFromSquare, "arrow-up-right-from-square")
             });
             #endregion
 
@@ -651,7 +653,10 @@ namespace Creator.Components.TagHelpers.Icon
                 new IconRecordModel(FontAwesomeSixIcon.DiagromProject, "diagram-project"),
                 new IconRecordModel(FontAwesomeSixIcon.BoxArchive, "box-archive"),
                 new IconRecordModel(FontAwesomeSixIcon.YouTube, "youtube", FontAwesomeSixPrefix.Brands),
-                new IconRecordModel(FontAwesomeSixIcon.YouTubeSquare, "square-youtube", FontAwesomeSixPrefix.Brands)
+                new IconRecordModel(FontAwesomeSixIcon.YouTubeSquare, "square-youtube", FontAwesomeSixPrefix.Brands),
+                new IconRecordModel(FontAwesomeSixIcon.Plus, "plus"),
+                new IconRecordModel(FontAwesomeSixIcon.MoneyBill, "money-bill"),
+                new IconRecordModel(FontAwesomeSixIcon.ArrowUpRightFromSquare, "arrow-up-right-from-square")
             });
             #endregion
 
@@ -1346,7 +1351,6 @@ namespace Creator.Components.TagHelpers.Icon
         Messenger,
         Mobile,
         MobileFull,
-        MoneyCheckout,
         Pager,
         PayPal,
         PayPalIcon,
@@ -1409,6 +1413,9 @@ namespace Creator.Components.TagHelpers.Icon
         PaintRoller,
         Palette,
         Tools,
+        Plus,
+        MoneyBill,
+        ArrowUpRightFromSquare
     }
 
     /// <summary>
@@ -1451,7 +1458,10 @@ namespace Creator.Components.TagHelpers.Icon
         DiagromProject,
         BoxArchive,
         YouTube,
-        YouTubeSquare
+        YouTubeSquare,
+        Plus,
+        MoneyBill,
+        ArrowUpRightFromSquare
     }
 
     /// <summary>
