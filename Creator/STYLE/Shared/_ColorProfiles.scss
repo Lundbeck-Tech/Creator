@@ -10,14 +10,4 @@ $cpAntan: ( Primary: #fe2f00, Second: #c44b30, Third: #c66b57, Fourth: #a76e62, 
 $cpNotify: ( Primary: #07294e, Second: #1c436d, Third: #466a92, Fourth: #7b9abd, Fifth: #c1cfde );
 $cpFunk: ( Primary: #165992, Second: #1976c5, Third: #1e92f4, Fourth: #61b2f7, Fifth: #9fcef6 );
 
-$CPs:   (   Default: $cpDefault, 
-            Primary: $cpPrimary, 
-            Success: $cpSuccess, 
-            Danger: $cpDanger, 
-            Warning: $cpWarning, 
-            Info: $cpInfo, 
-            Light: $cpLight, 
-            Dark: $cpDark, 
-            Antan: $cpAntan, 
-            Notify: $cpNotify,
-            Funk: $cpFunk);
+$CPs: ( Default: $cpDefault, Primary: $cpPrimary, Success: $cpSuccess, Danger: $cpDanger, Warning: $cpWarning, Info: $cpInfo, Light: $cpLight, Dark: $cpDark, Antan: $cpAntan, Notify: $cpNotify, Funk: $cpFunk);

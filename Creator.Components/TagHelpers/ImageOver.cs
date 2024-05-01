@@ -3,10 +3,10 @@
     @Author         : Stein Lundbeck
 */
 
-using LundbeckConsulting.Components.Core.Components;
-using LundbeckConsulting.Components.Core.Components.Repos;
-using LundbeckConsulting.Components.Core.Components.TagHelpers;
-using LundbeckConsulting.Components.Extensions;
+using SteinLundbeck.Components.Core.Components;
+using SteinLundbeck.Components.Core.Repos;
+using SteinLundbeck.Components.Core.TagHelpers;
+using SteinLundbeck.Components.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;

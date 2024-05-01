@@ -4,15 +4,14 @@
 */
 
 using Creator.Components;
-using LundbeckConsulting.Components.Core.Components;
-using LundbeckConsulting.Components.Core.Components.Extensions;
-using LundbeckConsulting.Components.Core.Components.Repos;
-using LundbeckConsulting.Components.Core.Components.TagHelpers;
-using LundbeckConsulting.Components.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using SteinLundbeck.Components.Core.Components;
+using SteinLundbeck.Components.Core.Repos;
+using SteinLundbeck.Components.Core.TagHelpers;
+using SteinLundbeck.Components.Extensions;
 
 namespace Creator.TagHelpers
 {
@@ -29,9 +28,9 @@ namespace Creator.TagHelpers
             TagHelperContent inner = await output.GetChildContentAsync();
             TagBuilderCustom burger = new TagBuilderCustom("i");
 
-            burger.InnerHtml.SetHtmlContent(inner.ToHtmlString());
+            burger.InnerHtml.SetHtmlContent(inner);
             burger.AddAttribute("id", "creatorBarsMenu");
-            burger.AddCssClassRange("creator-bars-icon", $"size-{this.Size.ToLower()}");
+            burger.AddCssClassRange("creator-bars-icon", $"size-{this.Size.Lower()}");
 
             AddContent(burger);
 

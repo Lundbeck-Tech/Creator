@@ -3,13 +3,12 @@
     @Author                       : Stein Lundbeck
 */
 
-using LundbeckConsulting.Components.Core.Components.Repos;
-using LundbeckConsulting.Components.Core.Components.TagHelpers;
-using LundbeckConsulting.Components.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using System;
+using SteinLundbeck.Components.Core.Repos;
+using SteinLundbeck.Components.Core.TagHelpers;
+using SteinLundbeck.Components.Extensions;
 
 namespace Creator.Components.TagHelpers
 {
@@ -71,7 +70,7 @@ namespace Creator.Components.TagHelpers
                     BreakTag.comma => ", ",
                     BreakTag.line => "\n",
                     BreakTag.semicolon => "; ",
-                    _ => throw new ArgumentException($"{tag.ToLower()} not supported"),
+                    _ => throw new ArgumentException($"{tag.Lower()} not supported"),
                 };
 
                 return result;

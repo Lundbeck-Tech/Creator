@@ -3,10 +3,10 @@
     @Author         : Stein Lundbeck
 */
 
-using LundbeckConsulting.Components.Core.Components;
-using LundbeckConsulting.Components.Core.Components.Repos;
-using LundbeckConsulting.Components.Core.Components.TagHelpers;
-using LundbeckConsulting.Components.Extensions;
+using SteinLundbeck.Components.Core.Components;
+using SteinLundbeck.Components.Core.Repos;
+using SteinLundbeck.Components.Core.TagHelpers;
+using SteinLundbeck.Components.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -76,7 +76,7 @@ namespace Creator.Components.TagHelpers
                 result.AddAttribute("open", "open");
             }
 
-            result.AddCssClass("dialog-" + this.Color.ToLower() + "-" + this.Size.ToLower());
+            result.AddCssClass("dialog-" + this.Color.Lower() + "-" + this.Size.Lower());
 
             return result;
         }

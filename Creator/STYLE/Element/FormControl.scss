@@ -20,23 +20,9 @@
     margin-left: $mrg;
     margin-right: $mrg;
 
-    &:focus {
-        border: 2px solid rgba($borderColor, 0.8);
-    }
-
     &:hover {
         background-color: rgba($backColor, 0.5);
-    }
-}
-
-@mixin txt($CPname) {
-    $fore: color($CPname);
-    $back: rgba(color($CPname, Fifth), 0.2);
-
-    @include controllBase($fore, $fore, $back);
-
-    &:focus {
-        background-color: white;
+        cursor: pointer;
     }
 }
 
@@ -57,9 +43,68 @@
     }
 }
 
+@mixin txt($CPname, $theme: Dark) {
+    $fore: color($CPname);
+    $back: rgba(color($CPname, Fifth), 0.2);
+
+    @if (str($theme) == light) {
+        $fore: color($CPname, Fourth);
+        $back: rgba(color($CPname, Fifth), 0.2);
+    }
+
+    @include controllBase($fore, $fore, $back);
+
+    &:focus {
+        background-color: white;
+        border: 2px solid rgba($fore, 0.8);
+    }
+}
+
+@mixin txtLite($includeFocus: true, $borderColor: #8a8a8a, $foreColor: black) {
+    border-left: 2px solid $borderColor;
+    background: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid $borderColor;
+    border-color: $borderColor;
+    padding-left: 18px;
+    padding-bottom: 8px;
+    font-size: 16px;
+    min-width: 234px;
+    color: $foreColor;
+    height: 23px;
+    margin-right: 8px;
+
+    @if ($includeFocus) {
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
 @each $name, $map in getMap(CP) {
     .#{CssKW(TextBox)}-#{str($name)} {
         @include txt($name);
+
+        &-light {
+            @include txt($name, Light);
+        }
+
+        &-lite {
+            @include txtLite(true, color($name, Second));
+
+            &:hover {
+                border-color: color($name, Second);
+            }
+
+            &-light {
+                @include txtLite(true, color($name, Fourth), color($name, Second));
+
+                &:hover {
+                    border-color: color($name, Second);
+                }
+            }
+        }
     }
 
     .#{CssKW(Button)}-#{str($name)} {

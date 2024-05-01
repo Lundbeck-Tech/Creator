@@ -1,0 +1,28 @@
+﻿@mixin docBody($layout: Default, $headerHeight: 280px, $footerHeight: 300px) {
+    $layout: to-lower-case($layout);
+
+    div.main-content-wrap {
+        display: grid;
+
+        @if ($layout == default) {
+            grid-template-columns: 1fr;
+            grid-template-rows: $headerHeight ((100vh - $headerHeight) - $footerHeight) $footerHeight;
+            justify-items: center;
+
+            & > section.content-wrap {
+                grid-row: 2;
+                grid-column: 1;
+            }
+        }
+        @else if ($layout == boxed) {
+            grid-template-columns: 20% 60% 20%;
+            grid-template-rows: 20vh 60vh 20vh;
+            justify-items: center;
+
+            & > section.content-wrap {
+                grid-row: 2;
+                grid-column: 2;
+            }
+        }
+    }
+}

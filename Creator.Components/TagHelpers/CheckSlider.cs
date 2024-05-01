@@ -4,10 +4,10 @@
     @Description          : null
 */
 
-using LundbeckConsulting.Components.Core.Components;
-using LundbeckConsulting.Components.Core.Components.Repos;
-using LundbeckConsulting.Components.Core.Components.TagHelpers;
-using LundbeckConsulting.Components.Extensions;
+using SteinLundbeck.Components.Core.Components;
+using SteinLundbeck.Components.Core.Repos;
+using SteinLundbeck.Components.Core.TagHelpers;
+using SteinLundbeck.Components.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -34,7 +34,7 @@ namespace Creator.Components.TagHelpers
             checkbox.AddAttribute("type", "checkbox");
             checkbox.AddAttribute("id", this.Id);
             slider.AddCssClassRange("slider", "round");
-            container.AddCssClass($"checkslider-{this.ColorProfile.ToLower()}");
+            container.AddCssClass($"checkslider-{this.ColorProfile.Lower()}");
 
             label.ApplyContent((TagBuilderCustom)checkbox);
             label.ApplyContent((TagBuilderCustom)slider);

@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Assets\LT.Components.Core\LT.Components.Core.csproj" />
-    <ProjectReference Include="..\..\Assets\LT.Components\LT.Components.csproj" />
+    <ProjectReference Include="..\..\Assets\SteinLundbeck.Conponents.Core\SteinLundbeck.Conponents.Core.csproj" />
+    <ProjectReference Include="..\..\Assets\SteinLundbeck.Conponents\SteinLundbeck.Conponents.csproj" />
   </ItemGroup>
 
 </Project>
